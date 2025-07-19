@@ -1,0 +1,80 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 24px;
+    align-items: center;
+    gap: 95px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    background: #1C1C1C;
+}
+
+.appName {
+    color: #FFFFFF
+}
+
+.headerContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1653px;
+    margin-left: auto;
+}
+
+.logoWrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .appName {
+        font-size: 16px;
+        font-weight: 500;
+    }
+}
+
+.searchWrapper {
+    display: flex;
+    max-width: 396px;
+    width: 100%;
+    padding: 16px 12px;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+    border-radius: 40px;
+    background: #0A0A0A;
+
+    input {
+        background: none;
+        border: none;
+        outline: none;
+        color: #fff;
+        font-size: 14px;
+        width: 100%;
+    }
+}
+
+.add {
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+}
+
+.addButton {
+    display: flex;
+    width: 135px;
+    padding: 12px 12px 12px 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+    cursor: pointer;
+    border-radius: 8px;
+    background: #FF6A3D;
+    border: none;
+}
