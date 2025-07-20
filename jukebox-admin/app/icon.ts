@@ -1,4 +1,4 @@
-export const    icons = {
+export const  icons = {
     logo: "/icon/logo.png",
     playlist: "/icon/playlist.svg",
     artistsAlbum: "/icon/artists.svg",
