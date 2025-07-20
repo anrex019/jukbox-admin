@@ -12,8 +12,17 @@ const navItems = [
   { id: 'user', label: 'User', icon: icons.user },
 ];
 
-const Sidebar = () => {
-  const [activeItem, setActiveItem] = useState<string | null>(null);
+type SidebarProps = {
+  onSelect: (id: string) => void;
+};
+
+const Sidebar = ({ onSelect }: SidebarProps) => {
+  const [activeItem, setActiveItem] = useState<string>('artistsAlbum');
+
+  const handleClick = (id: string) => {
+    setActiveItem(id);
+    onSelect(id); 
+  };
 
   return (
     <aside className={styles.sidebar}>
@@ -23,9 +32,15 @@ const Sidebar = () => {
             <li
               key={item.id}
               className={activeItem === item.id ? styles.active : ''}
-              onClick={() => setActiveItem(item.id)}
+              onClick={() => handleClick(item.id)}
             >
-              <Image src={item.icon} alt={item.label} width={20} height={20} />
+              <Image
+                className={styles.icon}
+                src={item.icon}
+                alt={item.label}
+                width={20}
+                height={20}
+              />
               <span>{item.label}</span>
             </li>
           ))}
@@ -35,4 +50,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar; 
+export default Sidebar;
