@@ -1,3 +1,6 @@
+
+import './globals.css';
+
 export const metadata = {
   title: 'Jukebox Admin',
   description: 'Admin panel for Jukebox',
