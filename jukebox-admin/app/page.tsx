@@ -1,27 +1,39 @@
 'use client';
 
-import { useState } from 'react';
 import Header from './components/Header/Header';
 import Sidebar from './components/Sidebar/sideBar';
 import ArtistTable from './components/ArtistTable/ArtistTable';
+import AlbumsTable from './components/AlbumsTable/AlbumsTable';
+import UserTable from './components/UserTable/UserTable';
+import PlayList from './components/PlayList/PlayList';
+import { PageProvider, usePage } from './context/PageContext';
+import { JSX } from 'react';
+
+const Content = () => {
+  const { selectedPage } = usePage();
+
+  const pages: { [key: string]: JSX.Element } = {
+    artistsAlbum: <ArtistTable />,
+    playlist: <PlayList />,
+    albums: <AlbumsTable />,
+    user: <UserTable />,
+  };
+
+  return pages[selectedPage] || null;
+};
 
 export default function HomePage() {
-  const [selectedPage, setSelectedPage] = useState('artistsAlbum');
-
   return (
-    <main>
+    <PageProvider>
       <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
         <Header />
         <div style={{ flex: 1, display: 'flex' }}>
-          <Sidebar onSelect={(id) => setSelectedPage(id)} />
+          <Sidebar />
           <div style={{ flex: 1, overflowY: 'auto', padding: '24px' }}>
-            {selectedPage === 'artistsAlbum' && <ArtistTable />}
-            {selectedPage === 'playlist' && <div style={{ color: 'white' }}>Playlist Page Coming Soon</div>}
-            {selectedPage === 'albums' && <div style={{ color: 'white' }}>Albums Page Coming Soon</div>}
-            {selectedPage === 'user' && <div style={{ color: 'white' }}>User Page Coming Soon</div>}
+            <Content />
           </div>
         </div>
       </div>
-    </main>
+    </PageProvider>
   );
 }

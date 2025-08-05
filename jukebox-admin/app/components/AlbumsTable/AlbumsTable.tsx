@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import styles from './ArtistTable.module.scss';
+import styles from './AlbumsTable.module.scss';
 import Image from 'next/image';
 import AddAlbumModal from '../Addalbum/AddAlbumModal';
 import EditArtistModal from '../Edit/EditArtistModal';
@@ -48,13 +48,13 @@ const ArtistTable = () => {
   };
 
   const handleOpenAddAlbum = (artist: Artist) => {
-    setActiveDropdown(null); 
+    setActiveDropdown(null); // dropdown დახურე
     setSelectedArtist(artist);
     setShowAddAlbumModal(true);
   };
 
   const handleOpenEdit = (artist: Artist) => {
-    setActiveDropdown(null); 
+    setActiveDropdown(null); // dropdown დახურე
     setSelectedArtist(artist);
     setShowEditModal(true);
   };
@@ -81,7 +81,7 @@ const ArtistTable = () => {
     <div className={styles.container}>
       <div className={styles.header}>
         <div>Artist Name</div>
-        <div>Artist Album</div>
+        <div>Artist Biography</div>
         <div>Date</div>
         <div>Status Order</div>
       </div>
@@ -148,6 +148,7 @@ const ArtistTable = () => {
         </div>
       )}
 
+      {/* Add Album Modal */}
       {showAddAlbumModal && selectedArtist && (
         <AddAlbumModal
           artist={selectedArtist}
@@ -156,6 +157,7 @@ const ArtistTable = () => {
         />
       )}
 
+      {/* Edit Artist Modal */}
       {showEditModal && selectedArtist && (
         <EditArtistModal
           onClose={handleCloseModals}

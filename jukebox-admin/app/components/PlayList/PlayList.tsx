@@ -1,15 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import styles from './ArtistTable.module.scss';
+import styles from './PlayList.module.scss';
 import Image from 'next/image';
-import AddAlbumModal from '../Addalbum/AddAlbumModal';
 import EditArtistModal from '../Edit/EditArtistModal';
-
-type Album = {
-  title: string;
-  releaseDate: string;
-};
 
 type Artist = {
   id: number;
@@ -17,7 +11,6 @@ type Artist = {
   bio: string;
   date: string;
   status: string;
-  albums?: Album[];
 };
 
 const initialData: Artist[] = Array.from({ length: 10 }, (_, i) => ({
@@ -26,7 +19,6 @@ const initialData: Artist[] = Array.from({ length: 10 }, (_, i) => ({
   bio: 'Lorem ipsum dolor sit amet...',
   date: '24 Oct, 2023',
   status: 'Active',
-  albums: [],
 }));
 
 const ArtistTable = () => {
@@ -34,7 +26,6 @@ const ArtistTable = () => {
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
   const [confirmDeleteId, setConfirmDeleteId] = useState<number | null>(null);
   const [selectedArtist, setSelectedArtist] = useState<Artist | null>(null);
-  const [showAddAlbumModal, setShowAddAlbumModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
 
   const handleDotsClick = (id: number) => {
@@ -47,32 +38,13 @@ const ArtistTable = () => {
     setActiveDropdown(null);
   };
 
-  const handleOpenAddAlbum = (artist: Artist) => {
-    setActiveDropdown(null); 
-    setSelectedArtist(artist);
-    setShowAddAlbumModal(true);
-  };
-
   const handleOpenEdit = (artist: Artist) => {
-    setActiveDropdown(null); 
+    setActiveDropdown(null);
     setSelectedArtist(artist);
     setShowEditModal(true);
   };
 
-  const handleAddAlbum = (artistId: number, album: Album) => {
-    setArtists((prev) =>
-      prev.map((artist) =>
-        artist.id === artistId
-          ? { ...artist, albums: [...(artist.albums || []), album] }
-          : artist
-      )
-    );
-    setShowAddAlbumModal(false);
-    setSelectedArtist(null);
-  };
-
   const handleCloseModals = () => {
-    setShowAddAlbumModal(false);
     setShowEditModal(false);
     setSelectedArtist(null);
   };
@@ -81,7 +53,7 @@ const ArtistTable = () => {
     <div className={styles.container}>
       <div className={styles.header}>
         <div>Artist Name</div>
-        <div>Artist Album</div>
+        <div>Artist Biography</div>
         <div>Date</div>
         <div>Status Order</div>
       </div>
@@ -107,10 +79,6 @@ const ArtistTable = () => {
               />
               {activeDropdown === artist.id && (
                 <div className={styles.dropdown}>
-                  <div onClick={() => handleOpenAddAlbum(artist)}>
-                    <Image src="/icon/add-album.svg" alt="Add" width={16} height={16} />
-                    <span>Add Album</span>
-                  </div>
                   <div onClick={() => handleOpenEdit(artist)}>
                     <Image src="/icon/edit.svg" alt="Edit" width={16} height={16} />
                     <span>Edit</span>
@@ -148,14 +116,7 @@ const ArtistTable = () => {
         </div>
       )}
 
-      {showAddAlbumModal && selectedArtist && (
-        <AddAlbumModal
-          artist={selectedArtist}
-          onClose={handleCloseModals}
-          onAddAlbum={handleAddAlbum}
-        />
-      )}
-
+      {/* Edit Artist Modal */}
       {showEditModal && selectedArtist && (
         <EditArtistModal
           onClose={handleCloseModals}

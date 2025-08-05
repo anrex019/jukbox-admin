@@ -1,0 +1,97 @@
+.confirmOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1100;
+}
+
+.confirmModal {
+    position: absolute;
+    top: 50%;
+    border-radius: 16px;
+    border: 1px solid rgba(51, 51, 51, 0.50);
+    background: #1C1C1C;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 32px;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    display: inline-flex;
+    padding: 24px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 714px;
+    width: 100%;
+    height: 197px;
+}
+
+.confirmModal p {
+    margin: 16px 0;
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    width: 100%;
+}
+
+.warningBackground {
+    border-radius: 46px;
+    border: 1px solid rgba(90, 90, 90, 0.5);
+    background: rgba(204, 204, 204, 0.35);
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.warning {
+    display: flex;
+    width: 32px;
+    height: 32px;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.message {
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 28px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.yesButton {
+    background: #ff6a3d;
+    padding: 14px 24px;
+    border-radius: 12px;
+    border: none;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    flex: 1;
+}
+
+.noButton {
+    background: #2a2a2a;
+    padding: 14px 24px;
+    border-radius: 12px;
+    border: 1px solid #444;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    flex: 1;
+}

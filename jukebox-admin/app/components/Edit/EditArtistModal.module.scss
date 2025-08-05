@@ -1,0 +1,124 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: #1C1C1C;
+    border-radius: 16px;
+    padding: 32px;
+    display: flex;
+    max-width: 830px;
+    width: 100%;
+    box-sizing: border-box;
+    color: #fff;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.contentWrapper {
+    display: flex;
+    width: 100%;
+    gap: 52px;
+    padding: 24px;
+}
+
+.left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+}
+
+.imageBox {
+    width: 240px;
+    height: 230px;
+    background-color: #2a2a2a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.right {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #FFF;
+}
+
+.input {
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    width: 100%;
+    display: flex;
+    width: 458px;
+    height: 48px;
+    padding: 16px 24px;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    background: #0A0A0A;
+}
+
+.dateInputs {
+    display: flex;
+    gap: 12px;
+
+    select {
+        flex: 1;
+        background-color: #2a2a2a;
+        border: none;
+        padding: 10px;
+        border-radius: 8px;
+        color: white;
+        font-size: 14px;
+        appearance: none;
+    }
+}
+
+.addButton {
+    border-radius: 8px;
+    background: #FF6A3D;
+    padding: 12px 20px;
+    border: none;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+    max-width: 458px;
+    width: 100%;
+}
+
+.addButton:hover {
+    background: #e65a2e;
+}

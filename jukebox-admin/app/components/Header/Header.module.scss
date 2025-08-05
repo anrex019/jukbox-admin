@@ -57,8 +57,8 @@
 
 .addButton {
     display: flex;
-    width: 135px;
-
+    max-width: 148px;
+    width: 100%;
     border: none;
     padding: 12px 12px 12px 8px;
     justify-content: center;

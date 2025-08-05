@@ -1,49 +1,51 @@
-'use client';
-
 import { useState } from 'react';
 import styles from './Sidebar.module.scss';
 import Image from 'next/image';
-import { icons } from '../../icon';
+import { usePage } from '../../context/PageContext';
 
 const navItems = [
-  { id: 'playlist', label: 'Playlist', icon: icons.playlist },
-  { id: 'artistsAlbum', label: 'Artists Album', icon: icons.artistsAlbum },
-  { id: 'albums', label: 'Albums', icon: icons.albums },
-  { id: 'user', label: 'User', icon: icons.user },
+  { id: 'playlist', label: 'Playlist', icon: 'playlist' },
+  { id: 'artistsAlbum', label: 'Artists Album', icon: 'artists' },
+  { id: 'albums', label: 'Albums', icon: 'albums' },
+  { id: 'user', label: 'User', icon: 'user' },
 ];
 
-type SidebarProps = {
-  onSelect: (id: string) => void;
-};
-
-const Sidebar = ({ onSelect }: SidebarProps) => {
-  const [activeItem, setActiveItem] = useState<string>('artistsAlbum');
+const Sidebar = () => {
+  const { selectedPage, setSelectedPage } = usePage();
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
   const handleClick = (id: string) => {
-    setActiveItem(id);
-    onSelect(id); 
+    setSelectedPage(id);
   };
 
   return (
     <aside className={styles.sidebar}>
       <nav className={styles.nav}>
         <ul>
-          {navItems.map((item) => (
-            <li
-              key={item.id}
-              className={activeItem === item.id ? styles.active : ''}
-              onClick={() => handleClick(item.id)}
-            >
-              <Image
-                className={styles.icon}
-                src={item.icon}
-                alt={item.label}
-                width={20}
-                height={20}
-              />
-              <span>{item.label}</span>
-            </li>
-          ))}
+          {navItems.map((item) => {
+            const isActive = selectedPage === item.id;
+            const isHovered = hoveredItem === item.id;
+            const iconName = `/icon/${item.icon}${isActive || isHovered ? '-hover' : ''}.svg`;
+
+            return (
+              <li
+                key={item.id}
+                className={`${styles.item} ${isActive ? styles.active : ''}`}
+                onClick={() => handleClick(item.id)}
+                onMouseEnter={() => setHoveredItem(item.id)}
+                onMouseLeave={() => setHoveredItem(null)}
+              >
+                <Image
+                  className={styles.icon}
+                  src={iconName}
+                  alt={item.label}
+                  width={20}
+                  height={20}
+                />
+                <span>{item.label}</span>
+              </li>
+            );
+          })}
         </ul>
       </nav>
     </aside>
